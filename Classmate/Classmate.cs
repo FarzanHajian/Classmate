@@ -1,4 +1,9 @@
-﻿using System;
+﻿//
+// This file is published under BSD 3-Clause License.
+// Visit https://github.com/FarzanHajian/Classmate/blob/main/LICENSE for details.
+//
+
+using System;
 using System.Reflection;
 using System.Text;
 
@@ -6,7 +11,6 @@ namespace Classmate
 {
     public static class Classmate
     {
-        private static readonly Type booleanType = typeof(bool);
         private static readonly StringBuilder result = new StringBuilder();
 
         public static string Classes(params object[] classes)
@@ -56,13 +60,10 @@ namespace Classmate
                 var properties = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
                 foreach (var property in properties)
                 {
-                    if (property.PropertyType == booleanType)
+                    if (property.GetValue(obj) is bool value && value)
                     {
-                        if ((bool)property.GetValue(obj))
-                        {
-                            result.Append(" ");
-                            result.Append(property.Name);
-                        }
+                        result.Append(" ");
+                        result.Append(property.Name);
                     }
                 }
             }

@@ -17,7 +17,6 @@ namespace Classmate.Test
         [TestMethod]
         public void StringObjectObject()
         {
-            int i = 12;
             int j = 3;
             var result = Classes(
                 "Foo",
