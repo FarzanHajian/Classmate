@@ -1,5 +1,5 @@
 # Classmate
-A simple tool to conditionally add CSS classes to HTML elements in Razor components.
+A simple tool to conditionally add CSS classes to HTML elements in Razor components (and also Razor pages).
 
 It is inspired by ReactJS [classnames](https://www.npmjs.com/package/classnames) library and brings such capabilities to Blazor applications.
 
