@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6</TargetFramework>
+    <PackageId>FarzanHajian.$(AssemblyName)</PackageId>
+    <Title>$(AssemblyName)</Title>
+    <Authors>Farzan Hajian</Authors>
+    <Version>$(AssemblyVersion)</Version>
+    <Description>A simple tool to conditionally add CSS classes to HTML elements in Razor components.</Description>
+    <Copyright>© Farzan Hajian 2021</Copyright>
+    <PackageProjectUrl>https://github.com/FarzanHajian/Classmate</PackageProjectUrl>
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/FarzanHajian/Classmate</RepositoryUrl>
+    <PackageTags>blazor razor css style html</PackageTags>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Assets\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
