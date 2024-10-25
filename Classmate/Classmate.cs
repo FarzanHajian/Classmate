@@ -7,7 +7,7 @@ using System;
 using System.Reflection;
 using System.Text;
 
-namespace Classmate
+namespace FarzanHajian.Classmate
 {
     public static class Classmate
     {

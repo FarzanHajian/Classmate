@@ -1,13 +1,11 @@
 # Classmate
-A simple tool to conditionally add CSS classes to HTML elements in Razor components (and also Razor pages).
-
-It is inspired by ReactJS [classnames](https://www.npmjs.com/package/classnames) library and brings such capabilities to Blazor applications.
+Classmate is a simple tool to conditionally add CSS classes to HTML elements in Razor components (and also Razor pages). The library is heavily inspired by ReactJS [classnames](https://www.npmjs.com/package/classnames) and brings such capabilities to Blazor applications.
 
 ## Installation
-For now, there is no Nuget package (I promise to provide one soon). Just copy the Classmate.cs file from Classmate project into to your own project.
+The prefered way for installing the library is to copy the Classmate.cs file into the destination project, but for those who prefer installing using package, the Classmate package is available on [NuGet](https://www.nuget.org/packages/FarzanHajian.Classmate/).
 
 ## Demo
-Consider FetchData.razor component in the Blazor demo application. It generates an HTML table containg some weather forecasts uing the following code block:
+Consider FetchData.razor component in the Blazor demo application. It generates an HTML table contaning some weather forecasts using the following code block:
 ```html
 ...
 <table class="table">
@@ -28,11 +26,7 @@ Consider FetchData.razor component in the Blazor demo application. It generates 
 </table>
 ...
 ```
-
-Now you want to use different styles (specially colors) for each row based on temperature values. 
-
-First three CSS classes are needed.
-
+Now imagine we would like to use different styles for each row based on temperature values. To achieve the effect, first of all, three CSS classes are needed.
 ```css
 .cold {
     color: blue;
@@ -50,8 +44,7 @@ First three CSS classes are needed.
     font-weight: bold;
 }
 ```
-And then the @foreach loop must be rewrited in either of the followng ways:
-
+And then the @foreach loop must be rewritten in order to make use of Classmate. Two different ways of doing so are provided below:
 ```
 @foreach (var forecast in forecasts)
 {
@@ -79,7 +72,7 @@ And then the @foreach loop must be rewrited in either of the followng ways:
     <tr class=@(
                 Classes(new {
                     cold = tp<=0,
-                    moderate= tp>0 && tp<40,
+                    moderate = tp>0 && tp<40,
                     hot = tp>=40}
                 )
             )>
@@ -90,98 +83,94 @@ And then the @foreach loop must be rewrited in either of the followng ways:
     </tr>
 }
 ```
+Pay attention to how the class attribute of <tr> is set. For each row, only one of the style names is returned from the Classes method and assigned to the row HTML.
 
 ## Usage
 The first step is to add the following using directive to your razor file:
 ```c
-@using static Classmate.Classmate;
+@using static FarzanHajian.Classmate.Classmate;
 ```
-Now you can use `Classmate` by calling `Classes` method.
-
+Now `Classmate` is accessible via calling `Classes` method. It accepts different inputs.
 ```c#
 // List of strings
-Classes("Foo", "Bar", "", "Baz Mar", null, " Zab  Faz ", " ")   // "Foo Bar Baz Mar Zab  Faz"
+Classes("btn", "btn-primary", "", "active btn-lg", null, " col   dropdown ", " ")   // "btn btn-primary active btn-lg col   dropdown"
 
 // List of strings with boolean queries
-Classes("Foo".If(true),"Bar".If(false));    // "Foo"
+Classes("info".If(true),"error".If(false));    // "info"
 
 // List of strings with boolean queries and else values
-Classes("Foo".If(true, "Food"),"Bar".If(false, "Baz"));    // "Foo Baz"
+Classes("info".If(true, "error"),"bold".If(false, "italic"));    // "info italic"
 
 // List of strings with lambda queries
- Classes("Foo".If(() => true), "Bar".If(() => false));  // "Foo"
+Classes("info".If(() => true), "error".If(() => false));  // "info"
 
 // List of strings with lambda queries and else values
- Classes("Foo".If(() => true, "Food"), "Bar".If(() => false, "Baz"));  // "Foo Baz"
+Classes("info".If(() => true, "error"), "bold".If(() => false, "italic"));  // "info italic"
 
 // List of objects with boolean values
 Classes(
-    new { Foo = true },
-    new { Bar = false, Baz = true, Gaz = true }
-);  // "Foo Baz Gaz"
+    new { info = true },
+    new { bold = false, italic = true, underlined = true }
+);  // "info italic underlined"
 
 // List of objects with lambda values
 Classes(
-    new { Foo = If(() => true) },
-    new { Bar = If(() => false), Baz = If(() => true) }
-);  // "Foo Baz"
+    new { info = If(() => true) },
+    new { bold = If(() => false), italic = If(() => true) }
+);  // "info italic"
 
-// A mixure
+// A mixure of different values
 Classes(
-    "Foo",
-    "Faz",
-    "Bar".If(() => false),
-    "Gaz",
+    "btn",
+    "btn_primary",
+    "active".If(() => false),
+    "italic",
     new
     {
-        Maz = true,
-        Naz = If(() => true),
-        Laz = If(() => false)
+        bold = true,
+        italic = If(() => true),
+        underlined = If(() => false)
     },
-    "Baz".If(true || false)
-);  // "Foo Faz Gaz Maz Naz Baz"
+    "hidden".If(true || false)
+);  // "btn btn-primary italic bold italic hidden"
 ```
-Moreover, there are some APIs that let you define if/else rules.
+Moreover, some APIs let you define if/else rules.
 ```c#
-// Strings with boolean predicate
-Classes(true, "Yes", "No"); // "Yes"
+// Strings with boolean predicate - Either the first or the second string is chosen
+Classes(true, "info", "error");         // "info"
 
-// Objects with boolean predicate
+// Strings with a lambda predicate - Either the first or the second string is chosen
+Classes(() => true, "info", "error");   // "info"
+
+// Objects with boolean predicate - Either the first or the second object is evaluated
 Classes(
     true,
     new
     {
-        Yes = true,
-        No = If(() => false),
-        YesYes = If(() => true)
+        info = true,
+        bold = If(() => false),
+        active = If(() => true)
     },
     new
     {
-        NoWay = true,
-        NoNo = If(() => false)
+        error = true,
+        disabled = If(() => false)
     }
-);  // "Yes YesYes"
+);  // "info active"
 
-// Strings with lambda predicate
-Classes(() => true, "Yes", "No");   // "Yes"
-
-// Objects with lambda predicate
+// Objects with a lambda predicate - Either the first or the second object is evaluated
 Classes(
-    ()=> true,
+    () => true,
     new
     {
-        Yes = true,
-        No = If(() => false),
-        YesYes = If(() => true)
+        info = true,
+        bold = If(() => false),
+        active = If(() => true)
     },
     new
     {
-        NoWay = true,
-        NoNo = If(() => false)
+        error = true,
+        disabled = If(() => false)
     }
-);  // "Yes YesYes"
-
+);  // "info active"
 ``` 
-
-
-

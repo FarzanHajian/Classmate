@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using static Classmate.Classmate;
+using static FarzanHajian.Classmate.Classmate;
 
 namespace Classmate.Test
 {
