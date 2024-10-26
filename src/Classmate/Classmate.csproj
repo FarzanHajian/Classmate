@@ -1,21 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6</TargetFramework>
-    <PackageId>FarzanHajian.$(AssemblyName)</PackageId>
-    <Title>$(AssemblyName)</Title>
-    <Authors>Farzan Hajian</Authors>
-    <Version>$(AssemblyVersion)</Version>
-    <Description>A simple tool to conditionally add CSS classes to HTML elements in Razor components.</Description>
-    <Copyright>© Farzan Hajian 2021</Copyright>
-    <PackageProjectUrl>https://github.com/FarzanHajian/Classmate</PackageProjectUrl>
-    <PackageIcon>Logo.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/FarzanHajian/Classmate</RepositoryUrl>
-    <PackageTags>blazor razor css style html</PackageTags>
-    <FileVersion>$(AssemblyVersion)</FileVersion>
-    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+      <TargetFramework>net6.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>disable</Nullable>
+	  <RootNamespace>FarzanHajian.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>	  
+	  <PackageId>FarzanHajian.$(AssemblyName)</PackageId>
+	  <Title>$(AssemblyName)</Title>
+	  <Authors>Farzan Hajian</Authors>
+	  <Description>A simple tool to conditionally add CSS classes to HTML elements in Razor components.</Description>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+      <PackageProjectUrl>https://github.com/FarzanHajian/Classmate</PackageProjectUrl>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <RepositoryUrl>https://github.com/FarzanHajian/Classmate</RepositoryUrl>
+	  <PackageTags>blazor razor css style html</PackageTags>
+	  <AssemblyVersion>1.0.0.0</AssemblyVersion>
+	  <FileVersion>$(AssemblyVersion)</FileVersion>
+	  <Version>$(AssemblyVersion)-rc1</Version>
+	  <Copyright>© Farzan Hajian 2021</Copyright>
+	  <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+	  <PackageIcon>Logo.png</PackageIcon>
+	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
