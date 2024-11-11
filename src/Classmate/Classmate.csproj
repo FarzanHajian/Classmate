@@ -16,7 +16,7 @@
 	  <PackageTags>blazor razor css style html</PackageTags>
 	  <AssemblyVersion>1.0.0.0</AssemblyVersion>
 	  <FileVersion>$(AssemblyVersion)</FileVersion>
-	  <Version>$(AssemblyVersion)-rc1</Version>
+	  <Version>$(AssemblyVersion)</Version>
 	  <Copyright>© Farzan Hajian 2021</Copyright>
 	  <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
 	  <PackageIcon>Logo.png</PackageIcon>

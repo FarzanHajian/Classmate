@@ -2,7 +2,7 @@
 Classmate is a simple tool to conditionally add CSS classes to HTML elements in Razor components (and also Razor pages). The library is heavily inspired by ReactJS [classnames](https://www.npmjs.com/package/classnames) and brings such capabilities to Blazor applications.
 
 ## Installation
-The prefered way for installing the library is to copy the Classmate.cs file into the destination project, but for those who prefer installing using package, the Classmate package is available on [NuGet](https://www.nuget.org/packages/FarzanHajian.Classmate/).
+The preferred method for installing the library is to copy the Classmate.cs file into the destination project, but for those who prefer installing using package, the Classmate package is available on [NuGet](https://www.nuget.org/packages/FarzanHajian.Classmate/).
 
 ## Demo
 Consider FetchData.razor component in the Blazor demo application. It generates an HTML table contaning some weather forecasts using the following code block:

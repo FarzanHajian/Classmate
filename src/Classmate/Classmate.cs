@@ -1,9 +1,8 @@
 ﻿//
-// This file is published under BSD 3-Clause License.
+// This file contains the Classmate 1.0.0 source code and is published under BSD 3-Clause License.
 // Visit https://github.com/FarzanHajian/Classmate/blob/main/LICENSE for details.
 //
 
-using System;
 using System.Reflection;
 using System.Text;
 
